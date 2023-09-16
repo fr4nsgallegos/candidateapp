@@ -19,6 +19,16 @@ class ListPage extends StatelessWidget {
             QuerySnapshot candidateCollection = snapshot.data;
             List<QueryDocumentSnapshot> docs = candidateCollection.docs;
             print(docs.length);
+            return ListView.builder(
+              itemCount: docs.length,
+              itemBuilder: (BuildContext context, int index) {
+                // print(docs[index].data());
+                Map<String, dynamic> myDoc =
+                    docs[index].data() as Map<String, dynamic>;
+                print(myDoc);
+                return Text(myDoc["name"]);
+              },
+            );
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           }
