@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 candidateReference
-                    .doc("idCandidateY")
+                    .doc("idCandidateX")
                     .set(
                       {
                         "name": "ppk",
@@ -57,7 +57,33 @@ class MyApp extends StatelessWidget {
               },
               child: Text("Agregar"),
             ),
-            ElevatedButton(onPressed: () {}, child: Text("Insercion1"))
+            ElevatedButton(
+                onPressed: () {
+                  candidateReference
+                      .add({
+                        'name': 'Castillo',
+                        'votes': 16,
+                      })
+                      .then((value) {})
+                      .catchError((Error) {
+                        print(Error);
+                      });
+                  ;
+                },
+                child: Text("Insercion1")),
+            ElevatedButton(
+              onPressed: () {
+                candidateReference.doc("idCandidateX").update(
+                    {'name': 'Tomyssss', 'votes': 50, 'direccion': 'lima'});
+              },
+              child: Text("Actualizar"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                candidateReference.doc("idCandidateX").delete();
+              },
+              child: Text("Eliminar"),
+            ),
           ],
         ),
       ),
