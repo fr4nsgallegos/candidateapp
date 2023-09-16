@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class StreamPage extends StatelessWidget {
+class StreamPageController extends StatelessWidget {
   CollectionReference candidateReference =
       FirebaseFirestore.instance.collection("candidate");
 
