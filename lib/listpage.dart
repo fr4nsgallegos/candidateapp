@@ -25,8 +25,16 @@ class ListPage extends StatelessWidget {
                 // print(docs[index].data());
                 Map<String, dynamic> myDoc =
                     docs[index].data() as Map<String, dynamic>;
+                myDoc["id"] = docs[index].id;
+                print("-------------------------");
+                print(docs[index].data());
+                print(myDoc["id"]);
                 print(myDoc);
-                return Text(myDoc["name"]);
+                return ListTile(
+                  title: Text(myDoc["name"]),
+                  subtitle: Text(myDoc["id"]),
+                );
+                // Text(myDoc["name"]);
               },
             );
           } else if (snapshot.hasError) {
