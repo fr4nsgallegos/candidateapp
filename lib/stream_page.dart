@@ -37,13 +37,29 @@ class StreamPage extends StatelessWidget {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 QuerySnapshot candidateCollection = snapshot.data;
-
-                return Center(
-                  child: Text(
-                    snapshot.data.toString(),
-                    style: TextStyle(fontSize: 50),
-                  ),
+                return ListView.builder(
+                  itemCount: candidateCollection.size,
+                  itemBuilder: (BuildContext context, int index) {
+                    Map<String, dynamic> myDoc = candidateCollection.docs[index]
+                        .data() as Map<String, dynamic>;
+                    // myDoc["id"] = candidateCollection.docs[index].id;
+                    return ListTile(
+                      title: Text(
+                        myDoc["name"],
+                      ),
+                      subtitle: Text(
+                        myDoc["id"],
+                      ),
+                    );
+                  },
                 );
+
+                // return Center(
+                //   child: Text(
+                //     snapshot.data.toString(),
+                //     style: TextStyle(fontSize: 50),
+                //   ),
+                // );
               }
               return Center(
                 child: CircularProgressIndicator(),
