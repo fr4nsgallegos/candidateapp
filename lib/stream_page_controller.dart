@@ -7,7 +7,8 @@ class StreamPageController extends StatelessWidget {
   CollectionReference candidateReference =
       FirebaseFirestore.instance.collection("candidate");
 
-  StreamController<int> myStreamController = StreamController();
+  StreamController<int> myStreamController = StreamController.broadcast();
+  int myCounter = 0;
 
   Stream<int> counter() async* {
     for (int i = 0; i < 10; i++) {
@@ -34,6 +35,7 @@ class StreamPageController extends StatelessWidget {
     // Stream<int> myStream = Stream.fromFuture(getNumberDelay());
     // print("STREAM CREADO");
     // counter().listen((value) {
+
     myStreamController.stream.listen((value) {
       print("VALOR DEL STREAM");
       print(value);
@@ -60,19 +62,21 @@ class StreamPageController extends StatelessWidget {
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
                   return Text(
-                    "0",
-                    style: TextStyle(fontSize: 50),
+                    snapshot.data.toString(),
+                    style: TextStyle(fontSize: 50, color: Colors.red),
                   );
                 }
                 return Text(
-                  "0",
+                  "-",
                   style: TextStyle(fontSize: 50),
                 );
               },
             ),
             ElevatedButton(
               onPressed: () {
-                myStreamController.add(9);
+                myStreamController.add(myCounter);
+                myCounter += 1;
+                // myCounter = myCounter + 1; //LO MISMO QUE MYCOUNTER+=1;
               },
               child: Text("Emitir"),
             ),
