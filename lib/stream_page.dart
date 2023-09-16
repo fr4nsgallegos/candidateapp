@@ -18,15 +18,32 @@ class StreamPage extends StatelessWidget {
     return 10;
   }
 
+  Future<int> getNumberDelay() async {
+    return Future.delayed(const Duration(seconds: 3), () {
+      return 1000;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    getNumber().then((value) {
-      print(value);
-    });
-
+    print("INIT STREAM");
+    Stream<int> myStream = Stream.fromFuture(getNumberDelay());
+    print("STREAM CREADO");
     counter().listen((value) {
+      print("VALOR DEL STREAM");
       print(value);
+    }, onDone: () {
+      print("STREAM FINALIZADO");
+    }, onError: (ERROR) {
+      print("ERRRRORRRRRRR");
     });
+    // getNumber().then((value) {
+    //   print(value);
+    // });
+
+    // counter().listen((value) {
+    //   print(value);
+    // });
 
     return Scaffold(
         appBar: AppBar(
@@ -42,7 +59,7 @@ class StreamPage extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     Map<String, dynamic> myDoc = candidateCollection.docs[index]
                         .data() as Map<String, dynamic>;
-                    // myDoc["id"] = candidateCollection.docs[index].id;
+                    myDoc["id"] = candidateCollection.docs[index].id;
                     return ListTile(
                       title: Text(
                         myDoc["name"],
