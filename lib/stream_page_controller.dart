@@ -30,10 +30,11 @@ class StreamPageController extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("INIT STREAM");
+    // print("INIT STREAM");
     // Stream<int> myStream = Stream.fromFuture(getNumberDelay());
-    print("STREAM CREADO");
-    counter().listen((value) {
+    // print("STREAM CREADO");
+    // counter().listen((value) {
+    myStreamController.stream.listen((value) {
       print("VALOR DEL STREAM");
       print(value);
     }, onDone: () {
@@ -41,67 +42,24 @@ class StreamPageController extends StatelessWidget {
     }, onError: (ERROR) {
       print("ERRRRORRRRRRR");
     });
-    // getNumber().then((value) {
-    //   print(value);
-    // });
-
-    // counter().listen((value) {
-    //   print(value);
-    // });
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text("STREAM PAGE"),
+      appBar: AppBar(
+        title: Text("STREAM PAGE"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                myStreamController.add(9);
+              },
+              child: Text("Emitir"),
+            ),
+          ],
         ),
-        body: StreamBuilder(
-            stream: candidateReference.snapshots(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                QuerySnapshot candidateCollection = snapshot.data;
-                return ListView.builder(
-                  itemCount: candidateCollection.size,
-                  itemBuilder: (BuildContext context, int index) {
-                    Map<String, dynamic> myDoc = candidateCollection.docs[index]
-                        .data() as Map<String, dynamic>;
-                    myDoc["id"] = candidateCollection.docs[index].id;
-                    return ListTile(
-                      title: Text(
-                        myDoc["name"],
-                      ),
-                      subtitle: Text(
-                        myDoc["id"],
-                      ),
-                    );
-                  },
-                );
-
-                // return Center(
-                //   child: Text(
-                //     snapshot.data.toString(),
-                //     style: TextStyle(fontSize: 50),
-                //   ),
-                // );
-              }
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            })
-
-        //FUTURE BUILDER TRABAJA CON UN FUTURE
-        // FutureBuilder(
-        //   future: getNumber(),
-        //   builder: (BuildContext context, AsyncSnapshot snapshot) {
-        //     if (snapshot.hasData) {
-        //       return Text(
-        //         snapshot.data.toString(),
-        //         style: TextStyle(fontSize: 50),
-        //       );
-        //     }
-        //     return Center(
-        //       child: CircularProgressIndicator(),
-        //     );
-        //   },
-        // ),
-        );
+      ),
+    );
   }
 }
