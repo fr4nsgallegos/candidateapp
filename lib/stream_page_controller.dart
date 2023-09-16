@@ -51,6 +51,25 @@ class StreamPageController extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Text(
+            //   "0",
+            //   style: TextStyle(fontSize: 50),
+            // ),
+            StreamBuilder(
+              stream: myStreamController.stream,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return Text(
+                    "0",
+                    style: TextStyle(fontSize: 50),
+                  );
+                }
+                return Text(
+                  "0",
+                  style: TextStyle(fontSize: 50),
+                );
+              },
+            ),
             ElevatedButton(
               onPressed: () {
                 myStreamController.add(9);
