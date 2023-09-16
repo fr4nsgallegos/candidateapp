@@ -6,12 +6,13 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp()
-      // MaterialApp(
-      // title: "Candidate app",
-      // home: MyApp(),
-      // )
-      );
+  runApp(
+    MaterialApp(
+      home: MyApp(),
+    ),
+  );
+
+  // MyApp());
 }
 
 // ignore: must_be_immutable
@@ -21,89 +22,87 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: Text("Home")),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  candidateReference.get().then((value) {
-                    QuerySnapshot candidateCollection = value;
-                    List<QueryDocumentSnapshot> docs = candidateCollection.docs;
-                    print("------------------");
-                    docs.forEach((element) {
-                      print(element.id);
-                      print(element.data());
-                    });
-                    print("************");
+    return Scaffold(
+      appBar: AppBar(title: Text("Home")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                candidateReference.get().then((value) {
+                  QuerySnapshot candidateCollection = value;
+                  List<QueryDocumentSnapshot> docs = candidateCollection.docs;
+                  print("------------------");
+                  docs.forEach((element) {
+                    print(element.id);
+                    print(element.data());
                   });
-                },
-                child: Text("Obtener data"),
-              ),
-              ElevatedButton(
+                  print("************");
+                });
+              },
+              child: Text("Obtener data"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                candidateReference
+                    .doc("idCandidateX")
+                    .set(
+                      {
+                        "name": "ppk",
+                        'votes': 13,
+                        "direccion": "arequipa, peru"
+                      },
+                    )
+                    .then((value) {})
+                    .catchError((Error) {
+                      print(Error);
+                    });
+              },
+              child: Text("Agregar"),
+            ),
+            ElevatedButton(
                 onPressed: () {
                   candidateReference
-                      .doc("idCandidateX")
-                      .set(
-                        {
-                          "name": "ppk",
-                          'votes': 13,
-                          "direccion": "arequipa, peru"
-                        },
-                      )
+                      .add({
+                        'name': 'Castillo',
+                        'votes': 16,
+                      })
                       .then((value) {})
                       .catchError((Error) {
                         print(Error);
                       });
+                  ;
                 },
-                child: Text("Agregar"),
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    candidateReference
-                        .add({
-                          'name': 'Castillo',
-                          'votes': 16,
-                        })
-                        .then((value) {})
-                        .catchError((Error) {
-                          print(Error);
-                        });
-                    ;
-                  },
-                  child: Text("Insercion1")),
-              ElevatedButton(
-                onPressed: () {
-                  candidateReference.doc("idCandidateX").update({
-                    'name': 'Tomyssss',
-                    'votes': 50,
-                    'direccion': 'lima',
-                  });
-                },
-                child: Text("Actualizar"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  candidateReference.doc("idCandidateX").delete();
-                },
-                child: Text("Eliminar"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ListPage(),
-                    ),
-                  );
-                },
-                child: Text("Ver lista"),
-              )
-            ],
-          ),
+                child: Text("Insercion1")),
+            ElevatedButton(
+              onPressed: () {
+                candidateReference.doc("idCandidateX").update({
+                  'name': 'Tomyssss',
+                  'votes': 50,
+                  'direccion': 'lima',
+                });
+              },
+              child: Text("Actualizar"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                candidateReference.doc("idCandidateX").delete();
+              },
+              child: Text("Eliminar"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ListPage(),
+                  ),
+                );
+              },
+              child: Text("Ver lista"),
+            )
+          ],
         ),
       ),
     );
