@@ -1,4 +1,5 @@
 import 'package:candidateapp/listpage.dart';
+import 'package:candidateapp/stream_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -101,6 +102,17 @@ class MyApp extends StatelessWidget {
                 );
               },
               child: Text("Ver lista"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StreamPage(),
+                  ),
+                );
+              },
+              child: Text("Ver Stream"),
             )
           ],
         ),
