@@ -1,4 +1,5 @@
 import 'package:candidateapp/listpage.dart';
+import 'package:candidateapp/pages/login_page.dart';
 import 'package:candidateapp/stream_page.dart';
 import 'package:candidateapp/stream_page_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,7 +11,9 @@ void main() async {
   await Firebase.initializeApp();
   runApp(
     MaterialApp(
-      home: MyApp(),
+      debugShowCheckedModeBanner: false,
+      // home: MyApp(),
+      home: LoginPage(),
     ),
   );
 
