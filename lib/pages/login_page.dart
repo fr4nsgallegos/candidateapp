@@ -1,10 +1,14 @@
 import 'package:candidateapp/constants/constants.dart';
+import 'package:candidateapp/pages/listpage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   // const LoginPage({super.key});
   TextEditingController _mailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Widget _buildEmail() {
     return Column(
@@ -52,6 +56,7 @@ class LoginPage extends StatelessWidget {
           decoration: boxItem,
           height: 60,
           child: TextField(
+            obscureText: true,
             controller: _passController,
             style: TextStyle(
               color: Colors.white,
@@ -104,7 +109,28 @@ class LoginPage extends StatelessWidget {
                   _buildPass(),
                   espacio(50),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      try {
+                        await _auth.createUserWithEmailAndPassword(
+                          email: _mailController.text,
+                          password: _passController.text,
+                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ListPage(),
+                          ),
+                        );
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              e.toString(),
+                            ),
+                          ),
+                        );
+                      }
+                    },
                     child: Text("Iniciar sesión"),
                   )
                 ],
