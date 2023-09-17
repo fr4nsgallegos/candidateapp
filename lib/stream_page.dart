@@ -13,6 +13,15 @@ class _StreamPageState extends State<StreamPage> {
       FirebaseFirestore.instance.collection("candidate");
 
   StreamController<int> myStreamController = StreamController();
+  StreamController streamCounter = StreamController();
+
+  streamCounterController() async {
+    for (int i = 0; i < 10; i++) {
+      await Future.delayed(const Duration(seconds: 2));
+      print("el valor es");
+      streamCounter.add(i);
+    }
+  }
 
   Stream<int> counter() async* {
     for (int i = 0; i < 10; i++) {
@@ -34,8 +43,15 @@ class _StreamPageState extends State<StreamPage> {
   }
 
   @override
+  void initState() {
+    streamCounterController();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   void dispose() {
-    counter();
+    streamCounter.close();
     // TODO: implement dispose
     super.dispose();
   }
@@ -43,9 +59,8 @@ class _StreamPageState extends State<StreamPage> {
   @override
   Widget build(BuildContext context) {
     print("INIT STREAM");
-    // Stream<int> myStream = Stream.fromFuture(getNumberDelay());
     print("STREAM CREADO");
-    counter().listen((value) {
+    streamCounter.stream.listen((value) {
       print("VALOR DEL STREAM");
       print(value);
     }, onDone: () {
@@ -53,13 +68,6 @@ class _StreamPageState extends State<StreamPage> {
     }, onError: (ERROR) {
       print("ERRRRORRRRRRR");
     });
-    // getNumber().then((value) {
-    //   print(value);
-    // });
-
-    // counter().listen((value) {
-    //   print(value);
-    // });
 
     return Scaffold(
         appBar: AppBar(
