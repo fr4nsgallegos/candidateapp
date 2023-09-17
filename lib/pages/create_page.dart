@@ -1,10 +1,11 @@
 import 'package:candidateapp/constants/constants.dart';
 import 'package:candidateapp/pages/listpage.dart';
+import 'package:candidateapp/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class CreatePage extends StatelessWidget {
   // const LoginPage({super.key});
   TextEditingController _mailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
@@ -102,7 +103,7 @@ class LoginPage extends StatelessWidget {
                   espacio(20),
                   titulo("BLOGGER APP", 30),
                   espacio(40),
-                  titulo("Inicia sesión", 25),
+                  titulo("Crea una cuenta", 25),
                   espacio(20),
                   _buildEmail(),
                   espacio(30),
@@ -111,16 +112,16 @@ class LoginPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () async {
                       try {
-                        await _auth.signInWithEmailAndPassword(
+                        await _auth.createUserWithEmailAndPassword(
                           email: _mailController.text,
                           password: _passController.text,
                         );
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ListPage(),
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => ListPage(),
+                        //   ),
+                        // );
                       } catch (e) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -130,6 +131,18 @@ class LoginPage extends StatelessWidget {
                           ),
                         );
                       }
+                    },
+                    child: Text("Crear cuenta"),
+                  ),
+                  espacio(20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ),
+                      );
                     },
                     child: Text("Iniciar sesión"),
                   ),

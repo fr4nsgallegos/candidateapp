@@ -1,3 +1,4 @@
+import 'package:candidateapp/pages/create_page.dart';
 import 'package:candidateapp/pages/listpage.dart';
 import 'package:candidateapp/pages/login_page.dart';
 import 'package:candidateapp/pages/stream_page.dart';
@@ -13,7 +14,7 @@ void main() async {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: MyApp(),
-      home: LoginPage(),
+      home: CreatePage(),
     ),
   );
 
