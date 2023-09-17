@@ -64,6 +64,41 @@ class MyApp extends StatelessWidget {
               child: Text("Agregar"),
             ),
             ElevatedButton(
+              onPressed: () {
+                candidateReference
+                    .doc("idCandidateX")
+                    .set(
+                      {
+                        "name": "ppk",
+                        'votes': 13,
+                        "direccion": "arequipa, peru"
+                      },
+                    )
+                    .then((value) {})
+                    .catchError((Error) {
+                      print(Error);
+                    });
+              },
+              child: Text("Agregar"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                candidateReference
+                    .limit(5)
+                    .where('votes', isGreaterThan: 20)
+                    .get()
+                    .then((value) {
+                  QuerySnapshot candidatoCollection = value;
+                  List<QueryDocumentSnapshot> documentos =
+                      candidatoCollection.docs;
+                  documentos.forEach((element) {
+                    print(element.data());
+                  });
+                });
+              },
+              child: Text("Buscar"),
+            ),
+            ElevatedButton(
                 onPressed: () {
                   candidateReference
                       .add({

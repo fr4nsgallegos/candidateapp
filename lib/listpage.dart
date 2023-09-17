@@ -33,6 +33,12 @@ class ListPage extends StatelessWidget {
                 return ListTile(
                   title: Text(myDoc["name"]),
                   subtitle: Text(myDoc["id"]),
+                  trailing: Text(myDoc["votes"].toString()),
+                  onTap: () {
+                    candidateReference.doc(myDoc["id"]).update({
+                      'votes': myDoc['votes'] + 1,
+                    });
+                  },
                 );
                 // Text(myDoc["name"]);
               },

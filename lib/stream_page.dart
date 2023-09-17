@@ -3,7 +3,12 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class StreamPage extends StatelessWidget {
+class StreamPage extends StatefulWidget {
+  @override
+  State<StreamPage> createState() => _StreamPageState();
+}
+
+class _StreamPageState extends State<StreamPage> {
   CollectionReference candidateReference =
       FirebaseFirestore.instance.collection("candidate");
 
@@ -26,6 +31,13 @@ class StreamPage extends StatelessWidget {
     return Future.delayed(const Duration(seconds: 3), () {
       return 1000;
     });
+  }
+
+  @override
+  void dispose() {
+    counter();
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -71,6 +83,12 @@ class StreamPage extends StatelessWidget {
                       subtitle: Text(
                         myDoc["id"],
                       ),
+                      trailing: Text(myDoc["votes"].toString()),
+                      onTap: () {
+                        candidateReference.doc(myDoc["id"]).update({
+                          'votes': myDoc['votes'] + 1,
+                        });
+                      },
                     );
                   },
                 );

@@ -3,11 +3,17 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class StreamPageController extends StatelessWidget {
+class StreamPageController extends StatefulWidget {
+  @override
+  State<StreamPageController> createState() => _StreamPageControllerState();
+}
+
+class _StreamPageControllerState extends State<StreamPageController> {
   CollectionReference candidateReference =
       FirebaseFirestore.instance.collection("candidate");
 
   StreamController<int> myStreamController = StreamController.broadcast();
+
   int myCounter = 0;
 
   Stream<int> counter() async* {
@@ -27,6 +33,13 @@ class StreamPageController extends StatelessWidget {
     return Future.delayed(const Duration(seconds: 3), () {
       return 1000;
     });
+  }
+
+  @override
+  void dispose() {
+    myStreamController.close();
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
