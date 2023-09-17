@@ -1,7 +1,7 @@
-import 'package:candidateapp/listpage.dart';
+import 'package:candidateapp/pages/listpage.dart';
 import 'package:candidateapp/pages/login_page.dart';
-import 'package:candidateapp/stream_page.dart';
-import 'package:candidateapp/stream_page_controller.dart';
+import 'package:candidateapp/pages/stream_page.dart';
+import 'package:candidateapp/pages/stream_page_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
