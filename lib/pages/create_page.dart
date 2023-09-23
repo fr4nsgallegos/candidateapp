@@ -1,4 +1,5 @@
 import 'package:candidateapp/constants/constants.dart';
+import 'package:candidateapp/main.dart';
 import 'package:candidateapp/pages/listpage.dart';
 import 'package:candidateapp/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -189,6 +190,12 @@ class _CreatePageState extends State<CreatePage> {
                       _signInWithGoogle().then((value) {
                         print(name);
                         print(email);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyApp(),
+                          ),
+                        );
                       });
                     },
                     child: Text("G"),

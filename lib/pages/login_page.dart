@@ -118,7 +118,9 @@ class LoginPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ListPage(),
+                            builder: (context) => ListPage(
+                              bgColor: Colors.blue.shade200,
+                            ),
                           ),
                         );
                       } catch (e) {

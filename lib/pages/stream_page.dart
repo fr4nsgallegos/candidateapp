@@ -4,6 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class StreamPage extends StatefulWidget {
+  Color bgColor;
+  StreamPage({
+    Key? key,
+    required this.bgColor,
+  });
   @override
   State<StreamPage> createState() => _StreamPageState();
 }

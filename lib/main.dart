@@ -3,6 +3,7 @@ import 'package:candidateapp/pages/listpage.dart';
 import 'package:candidateapp/pages/login_page.dart';
 import 'package:candidateapp/pages/stream_page.dart';
 import 'package:candidateapp/pages/stream_page_controller.dart';
+import 'package:candidateapp/pages/tab_bar_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ void main() async {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: MyApp(),
-      home: CreatePage(),
+      home: TabBarPage(),
     ),
   );
 
@@ -137,7 +138,9 @@ class MyApp extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ListPage(),
+                    builder: (context) => ListPage(
+                      bgColor: Colors.amber.shade200,
+                    ),
                   ),
                 );
               },
@@ -148,7 +151,9 @@ class MyApp extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => StreamPage(),
+                    builder: (context) => StreamPage(
+                      bgColor: const Color.fromARGB(255, 167, 143, 244),
+                    ),
                   ),
                 );
               },
@@ -159,7 +164,9 @@ class MyApp extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => StreamPageController(),
+                    builder: (context) => StreamPageController(
+                      bgColor: Colors.green.shade200,
+                    ),
                   ),
                 );
               },

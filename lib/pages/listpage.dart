@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class ListPage extends StatelessWidget {
+  Color bgColor;
+  ListPage({
+    Key? key,
+    required this.bgColor,
+  });
   CollectionReference candidateReference =
       FirebaseFirestore.instance.collection("candidate");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgColor,
       appBar: AppBar(
         title: Text("LIST PAGE"),
       ),
