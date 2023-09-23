@@ -1,3 +1,4 @@
+import 'package:candidateapp/pages/map_page.dart';
 import 'package:candidateapp/pages/tab_bar_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,8 @@ void main() async {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TabBarPage(),
+      // home: TabBarPage(),
+      home: MapPage(bgColor: Colors.white),
     ),
   );
 }
