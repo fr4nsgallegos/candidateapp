@@ -4,12 +4,26 @@ import 'package:candidateapp/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class CreatePage extends StatelessWidget {
+class CreatePage extends StatefulWidget {
+  @override
+  State<CreatePage> createState() => _CreatePageState();
+}
+
+class _CreatePageState extends State<CreatePage> {
   // const LoginPage({super.key});
   TextEditingController _mailController = TextEditingController();
+
   TextEditingController _passController = TextEditingController();
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  String name = '';
+
+  String email = '';
 
   Widget _buildEmail() {
     return Column(
@@ -76,6 +90,27 @@ class CreatePage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<void> _signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      final User? user =
+          (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+
+      setState(() {
+        name = user!.displayName.toString();
+        email = user.email.toString();
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -146,6 +181,18 @@ class CreatePage extends StatelessWidget {
                     },
                     child: Text("Iniciar sesión"),
                   ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                    ),
+                    onPressed: () {
+                      _signInWithGoogle().then((value) {
+                        print(name);
+                        print(email);
+                      });
+                    },
+                    child: Text("G"),
+                  )
                 ],
               ),
             ),
