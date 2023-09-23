@@ -1,5 +1,6 @@
 import 'package:candidateapp/pages/home_page.dart';
 import 'package:candidateapp/pages/listpage.dart';
+import 'package:candidateapp/pages/map_page.dart';
 import 'package:candidateapp/pages/stream_page.dart';
 import 'package:candidateapp/pages/stream_page_controller.dart';
 import 'package:flutter/material.dart';
@@ -34,5 +35,11 @@ final List<Map<String, dynamic>> pageDetails = [
     'title': 'Home',
     'navigationBarColor': Colors.amber.shade200,
     'bottom_Color': Colors.amber.shade600,
+  },
+  {
+    'pageName': MapPage(bgColor: Colors.red.shade200),
+    'title': 'MAPS',
+    'navigationBarColor': Colors.red.shade200,
+    'bottom_Color': Colors.red.shade600,
   }
 ];
