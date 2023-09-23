@@ -32,7 +32,7 @@ final List<Map<String, dynamic>> pageDetails = [
   {
     'pageName': HomePage(bgColor: Colors.amber.shade200),
     'title': 'Home',
-    'navigationBarColor': Colors.amber.shade600,
+    'navigationBarColor': Colors.amber.shade200,
     'bottom_Color': Colors.amber.shade600,
   }
 ];

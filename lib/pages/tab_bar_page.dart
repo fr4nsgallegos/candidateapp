@@ -32,9 +32,9 @@ class _TabBarPageState extends State<TabBarPage> {
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.amber,
-        color: Colors.orange,
-        buttonBackgroundColor: Colors.red,
+        backgroundColor: pageDetails[_activePageIndex]['navigationBarColor'],
+        color: pageDetails[_activePageIndex]['bottom_Color'],
+        // buttonBackgroundColor: pageDetails[_activePageIndex]['bottom_Color'],
         items: [
           Icon(Icons.home),
           Icon(Icons.people),

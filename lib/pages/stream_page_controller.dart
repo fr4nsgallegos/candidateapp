@@ -61,6 +61,7 @@ class _StreamPageControllerState extends State<StreamPageController> {
     });
 
     return Scaffold(
+      backgroundColor: widget.bgColor,
       // appBar: AppBar(title: Text("STREAM PAGE")),
       body: Center(
         child: Column(

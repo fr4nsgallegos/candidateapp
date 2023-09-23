@@ -75,6 +75,7 @@ class _StreamPageState extends State<StreamPage> {
     });
 
     return Scaffold(
+        backgroundColor: widget.bgColor,
         // appBar: AppBar(title: Text("STREAM PAGE")),
         body: StreamBuilder(
             stream: candidateReference.snapshots(),
