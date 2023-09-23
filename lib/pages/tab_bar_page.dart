@@ -15,13 +15,21 @@ class _TabBarPageState extends State<TabBarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: pageDetails[_activePageIndex]['tittle']),
+      appBar: AppBar(title: Text(pageDetails[_activePageIndex]['title'])),
       // backgroundColor: Colors.amber,
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
-          _activePageIndex = index;
+          setState(() {
+            _activePageIndex = index;
+          });
         },
+        children: [
+          pageDetails[0]['pageName'],
+          pageDetails[1]['pageName'],
+          pageDetails[2]['pageName'],
+          pageDetails[3]['pageName'],
+        ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.amber,
@@ -33,6 +41,10 @@ class _TabBarPageState extends State<TabBarPage> {
           Icon(Icons.list),
           Icon(Icons.add),
         ],
+        onTap: (index) {
+          _pageController.animateToPage(index,
+              duration: Duration(microseconds: 400), curve: Curves.ease);
+        },
       ),
     );
   }

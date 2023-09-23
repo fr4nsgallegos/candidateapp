@@ -14,9 +14,7 @@ class ListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: AppBar(
-        title: Text("LIST PAGE"),
-      ),
+      // appBar: AppBar(title: Text("LIST PAGE")),
       body: FutureBuilder(
         future: candidateReference.get(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {

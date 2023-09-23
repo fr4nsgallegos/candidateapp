@@ -61,9 +61,7 @@ class _StreamPageControllerState extends State<StreamPageController> {
     });
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("STREAM PAGE"),
-      ),
+      // appBar: AppBar(title: Text("STREAM PAGE")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

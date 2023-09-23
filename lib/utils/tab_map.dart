@@ -17,7 +17,7 @@ final List<Map<String, dynamic>> pageDetails = [
     'pageName': StreamPage(
       bgColor: Colors.green.shade200,
     ),
-    'title': 'Lista',
+    'title': 'Stream',
     'navigationBarColor': Colors.green.shade200,
     'bottom_Color': Colors.green.shade600,
   },
@@ -25,13 +25,13 @@ final List<Map<String, dynamic>> pageDetails = [
     'pageName': StreamPageController(
       bgColor: const Color.fromARGB(255, 167, 143, 244),
     ),
-    'title': 'Lista',
+    'title': 'Stream con controller',
     'navigationBarColor': const Color.fromARGB(255, 167, 143, 244),
     'bottom_Color': const Color.fromARGB(255, 74, 25, 238),
   },
   {
     'pageName': HomePage(bgColor: Colors.amber.shade200),
-    'title': 'Lista',
+    'title': 'Home',
     'navigationBarColor': Colors.amber.shade600,
     'bottom_Color': Colors.amber.shade600,
   }

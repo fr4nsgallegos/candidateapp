@@ -75,9 +75,7 @@ class _StreamPageState extends State<StreamPage> {
     });
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text("STREAM PAGE"),
-        ),
+        // appBar: AppBar(title: Text("STREAM PAGE")),
         body: StreamBuilder(
             stream: candidateReference.snapshots(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
