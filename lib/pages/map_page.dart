@@ -28,8 +28,11 @@ class _MapPageState extends State<MapPage> {
         markers: myMarkers,
         onTap: (LatLng position) {
           print(position);
-          Marker marker =
-              Marker(markerId: MarkerId("Marker001"), position: position);
+          Marker marker = Marker(
+              markerId: MarkerId(myMarkers.length.toString()),
+              position: position);
+          print("***************************");
+          print(myMarkers);
           myMarkers.add(marker);
           setState(() {});
         },
