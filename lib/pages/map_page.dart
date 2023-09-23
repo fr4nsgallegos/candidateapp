@@ -1,3 +1,4 @@
+import 'package:candidateapp/utils/controller_map.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -13,11 +14,13 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   Set<Marker> myMarkers = {};
+  final _controller = ControllersApp();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: widget.bgColor,
       body: GoogleMap(
+        onMapCreated: _controller.onMapCreated,
         initialCameraPosition: CameraPosition(
           target: LatLng(
             -16.370401,
@@ -27,12 +30,9 @@ class _MapPageState extends State<MapPage> {
         ),
         markers: myMarkers,
         onTap: (LatLng position) {
-          print(position);
           Marker marker = Marker(
               markerId: MarkerId(myMarkers.length.toString()),
               position: position);
-          print("***************************");
-          print(myMarkers);
           myMarkers.add(marker);
           setState(() {});
         },
