@@ -13,6 +13,11 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   Set<Marker> myMarkers = {};
   final _controller = ControllersApp();
   @override
@@ -23,8 +28,8 @@ class _MapPageState extends State<MapPage> {
         onMapCreated: _controller.onMapCreated,
         initialCameraPosition: CameraPosition(
           target: LatLng(
-            -16.370401,
-            -71.537135,
+            -16.829145,
+            -64.800988,
           ),
           zoom: 15,
         ),
