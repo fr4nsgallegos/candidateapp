@@ -1,5 +1,6 @@
 import 'package:candidateapp/constants/constants.dart';
 import 'package:candidateapp/main.dart';
+import 'package:candidateapp/pages/home_page.dart';
 import 'package:candidateapp/pages/listpage.dart';
 import 'package:candidateapp/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -193,7 +194,9 @@ class _CreatePageState extends State<CreatePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MyApp(),
+                            builder: (context) => HomePage(
+                              bgColor: Colors.amber.shade200,
+                            ),
                           ),
                         );
                       });
